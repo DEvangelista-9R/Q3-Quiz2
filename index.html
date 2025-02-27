@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticketing Center</title>
+
+    <!-- SETUP BOOTSTRAP: link to Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Link to JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Add style -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script>
+        function showForm(formId) {
+            document.getElementById('personal-info').style.display = 'none';
+            document.getElementById('ticket-price').style.display = 'none';
+            document.getElementById('print-ticket').style.display = 'none';
+            document.getElementById(formId).style.display = 'block';
+        }
+
+        function submitInfo() {
+            let name = document.getElementById('name').value;
+            alert("ACCESS GRANTED: Welcome, " + name + "!");
+        }
+
+        function checkPrice() {
+            let seat = document.getElementById('seat').value;
+            let option = document.getElementById('option').value;
+            let price = 0;
+
+            if (seat === "VIP") price = 1000;
+            else if (seat === "Patron") price = 700;
+            else if (seat === "Balcony") price = 500;
+
+            if (option === "Student Discount") price *= 0.8;
+
+            alert("DATA RECEIVED: Your ticket costs PHP " + price + ".");
+        }
+
+        function printTicket() {
+            let email = document.getElementById('email').value;
+            alert("TICKET TRANSMISSION COMPLETE: Sent to " + email + ".");
+        }
+    </script>
+</head>
+<body>
+    <div class="header">[ACCESS] Ticketing Center</div>
+    <div class="container-box">
+        <div class="btn-group-custom">
+            <button class="custom-btn" onclick="showForm('personal-info')">[LOGIN] Personal Information</button>
+            <button class="custom-btn" onclick="showForm('ticket-price')">[DATA] Check Ticket Price</button>
+            <button class="custom-btn" onclick="showForm('print-ticket')">[PRINT] Print Ticket</button>
+        </div>
+    </div>
+
+    <div id="personal-info" class="form-container">
+        <h3>Personal Information</h3>
+        <label>Complete Name: <input type="text" id="name" class="form-control"></label>
+        <label>Email: <input type="email" id="email" class="form-control"></label>
+        <button class="custom-btn" onclick="submitInfo()">Submit</button>
+    </div>
+
+    <div id="ticket-price" class="form-container">
+        <h3>Ticket Price</h3>
+        <label>Seat Type:
+            <select id="seat" class="form-control">
+                <option>Patron</option>
+                <option>Balcony</option>
+                <option>VIP</option>
+            </select>
+        </label>
+        <label>Discount:
+            <select id="option" class="form-control">
+                <option>Regular</option>
+                <option>Student Discount</option>
+            </select>
+        </label>
+        <button class="custom-btn" onclick="checkPrice()">Get Price</button>
+    </div>
+
+    <div id="print-ticket" class="form-container">
+        <h3>Print Your Ticket</h3>
+        <img src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t1.15752-9/481500459_1213624810206840_3606971376731833756_n.png?stp=dst-png_s640x640&_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_ohc=sKCzwpaR0ewQ7kNvgHL87Wn&_nc_oc=AdgwJxWAGPSuSGlcacIErqpfrxMAvzML9kPotKN9EqnjEw7ji63ZwaonWkJY5xsmxj4&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&oh=03_Q7cD1gFWy0Z0zgjgVBzXbcdkypOM2sR7FjonUtUYJ4yUQ3W5Gg&oe=67E7F7DC">
+        <br>
+        <button class="custom-btn" onclick="printTicket()">Print</button>
+        <button class="custom-btn">Buy More Tickets</button>
+    </div>
+
+    <div class="footer">
+        <p>AY 2025 | ICT RUBY 9 | Dwayne Evangelista | Exercise 3</p>
+    </div>
+</body>
+</html>
+
+
+
